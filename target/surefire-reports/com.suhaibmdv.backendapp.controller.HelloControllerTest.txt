@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.suhaibmdv.backendapp.controller.HelloControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.138 s -- in com.suhaibmdv.backendapp.controller.HelloControllerTest
