@@ -39,6 +39,7 @@ pipeline {
             }
             steps {
                 sh """
+                set +e
                 rm -rf manifests
                 git clone --branch $MANIFEST_REPO_BRANCH $MANIFEST_REPO_URL
 
@@ -48,8 +49,9 @@ pipeline {
                 git checkout -b update-image-$BUILD_NUMBER
                 sed -i "s|image: .*|image: 3.145.202.127:5000/${IMAGE_NAME}:${IMAGE_TAG}|" deployment.yaml
                 git add deployment.yaml
-                git commit -m "Update image to 3.145.202.127:5000/${IMAGE_NAME}:${IMAGE_TAG}"
+                git commit -m "Update image to 3.145.202.127:5000/${IMAGE_NAME}:${IMAGE_TAG}" || echo "No changes to commit"
                 git push https://$TOKEN@github.com/suhaibmdv/manifests.git update-image-$BUILD_NUMBER
+                set -e
                 """
             }
         }
